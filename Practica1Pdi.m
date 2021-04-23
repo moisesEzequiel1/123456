@@ -7,7 +7,7 @@ clc;clear all;
     
     
 
-% 3-Sub-muestrear la imagen original para reducir a una novena parte su tamaño 
+% 3-Sub-muestrear la imagen original para reducir a una novena parte su tamaï¿½o 
     imagenReducida=imagen(1:3:end,1:3:end,:);
     figure(2)
     imshow(imagenReducida(:,:,:))
@@ -50,7 +50,7 @@ clc;clear all;
 end  
 
 
-% 7-Leer alguna imagen del medio de su elección con alto contenido de cromaticidad
+% 7-Leer alguna imagen del medio de su elecciï¿½n con alto contenido de cromaticidad
     imagenColores=imread('colores.jpg');
     figure(4)
     imshow(imagenColores(:,:,:))
@@ -100,7 +100,7 @@ end
         title(' V=Brillo');
 
 
-
+% El codigo siguiente tenia varias fallas
 
 
 
