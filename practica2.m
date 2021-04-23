@@ -85,3 +85,4 @@ end
 
 
 figure(3), imshow(a)
+figure(3), imshow(a)
