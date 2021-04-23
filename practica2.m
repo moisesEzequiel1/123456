@@ -81,3 +81,7 @@ while m <= dimension(2)
     figure(2),imshow(a)
     size(a);
 end
+
+
+
+figure(3), imshow(a)
