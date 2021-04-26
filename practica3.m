@@ -31,9 +31,9 @@ ventana=[1 1 1;1 1 1;1 1 1];
         subplot(3,2,6),imshow(imagen),title('Imagen Original')
 
 %---------PUNTO 4 Sal y Pimienta------------------------------
-imagenINE=imread('ParteDelanteraINE.jpg');
-imagenINEGray=rgb2gray(imagenINE);
-imagenruidoSalyPim = double(imnoise(imagenINEGray,'salt & pepper',0.15))/255;
+imagenTR=imread('imagendeprueba.bmp');
+imagenTRGray=rgb2gray(imagenTR);
+imagenruidoSalyPim = double(imnoise(imagenTRGray,'salt & pepper',0.15))/255;
 %---------PUNTO 5 Sal y Pimienta------------------------------
 %Suavizado por Media
 mascaraMedia2=fspecial('average',[4,4]);
@@ -50,6 +50,6 @@ mascaraGussiana2=fspecial('gaussian',[13,13],2);
     subplot(3,2,3),imshow(imagenSalyPimGaus),title('Imagen Filtrada: mascara Gaussiana')
     subplot(3,2,4),imshow(imagenSalyPimMediana),title('Imagen Filtrada: Filtro de Mediana')
     subplot(3,2,5),imshow(imagenSalyPimMaximo),title('Imagen Filtrada: Filtro de minimos')
-    subplot(3,2,6),imshow(imagenINEGray),title('Imagen Original')
+    subplot(3,2,6),imshow(imagenTRGray),title('Imagen Original')
 
 
