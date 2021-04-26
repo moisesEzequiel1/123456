@@ -1,27 +1,35 @@
 clc; clear all; close all;
 %---------PUNTO 1------------------------------------------
-imagen=imread('shinkansen-5237269_1920.jpg');
-imagenGray=rgb2gray(imagen);
-    imagenruidoGaus = double(imnoise(imagenGray,'gaussian',0,0.02))/255;
+imagen=imread('imagendeprueba.bmp');
+% imagenGray=rgb2gray(imagen);
+imagenruidoGaus = double(imnoise(imagen,'gaussian',0,0.02))/255;
 %---------PUNTO 2 Ruido Gaussiano---------------------------
 %Suavizado por Media
 mascaraMedia=fspecial('average',[3,3]);
-    imagen1=conv2(imagenruidoGaus,mascaraMedia,'same'); %Same quita bordes negros
+    imagen1(:,:,1)=conv2(imagenruidoGaus(:,:,1),mascaraMedia,'same'); %Same quita bordes negros
+    imagen1(:,:,2)=conv2(imagenruidoGaus(:,:,2),mascaraMedia,'same'); %Same quita bordes negros
+    imagen1(:,:,3)=conv2(imagenruidoGaus(:,:,3),mascaraMedia,'same'); %Same quita bordes negros
 %Suavizado por Mascara Gaussiana
 mascaraGussiana=fspecial('gaussian',[13,13],2);
-    imagen2=conv2(imagenruidoGaus,mascaraGussiana,'same');
-%Filtro de mediana       
-ventana=[0 1 0;1 1 1;0 1 0];       
-    imagen3=ordfilt2(imagenruidoGaus,3,ventana);
+    imagen2(:,:,1)=conv2(imagenruidoGaus(:,:,1),mascaraGussiana,'same'); %Same quita bordes negros
+    imagen2(:,:,2)=conv2(imagenruidoGaus(:,:,2),mascaraGussiana,'same'); %Same quita bordes negros
+    imagen2(:,:,3)=conv2(imagenruidoGaus(:,:,3),mascaraGussiana,'same'); %Same quita bordes negros
+%Filtro de mediana      
+ventana=[1 1 1;1 1 1;1 1 1];       
+    imagen3(:,:,1)=ordfilt2(imagenruidoGaus(:,:,1),4,ventana);
+    imagen3(:,:,2)=ordfilt2(imagenruidoGaus(:,:,2),4,ventana);
+    imagen3(:,:,3)=ordfilt2(imagenruidoGaus(:,:,3),4,ventana);
 %Filtro de minimo       
-    imagen4=ordfilt2(imagenruidoGaus,1,ventana);
-    % impresion por pantalla
-figure(1), subplot(3,2,1),imshow(imagenruidoGaus),title('Imagen Contaminada: Ruido Gausiano')
-subplot(3,2,2),imshow(imagen1),title('Imagen con suavizado mascara media')
-subplot(3,2,3),imshow(imagen2),title('Imagen con suaviazado: mascara Gaussiana')
-subplot(3,2,4),imshow(imagen3),title('Imagen con filtrado: Filtro de Mediana')
-subplot(3,2,5),imshow(imagen4),title('Imagen con filtrado: Filtro de minimos')
-subplot(3,2,6),imshow(imagenGray),title('Imagen Original')
+    imagen4(:,:,1)=ordfilt2(imagenruidoGaus(:,:,1),1,ventana);
+    imagen4(:,:,2)=ordfilt2(imagenruidoGaus(:,:,2),1,ventana);
+    imagen4(:,:,3)=ordfilt2(imagenruidoGaus(:,:,3),1,ventana);
+% impresion por pantalla
+        figure(1), subplot(3,2,1),imshow(imagenruidoGaus),title('Imagen Contaminada: Ruido Gausiano')
+        subplot(3,2,2),imshow(imagen1),title('Imagen Filtrada: mascara media')
+        subplot(3,2,3),imshow(imagen2),title('Imagen Filtrada: mascara Gaussiana')
+        subplot(3,2,4),imshow(imagen3),title('Imagen Filtrada: Filtro de Mediana')
+        subplot(3,2,5),imshow(imagen4),title('Imagen Filtrada: Filtro de minimos')
+        subplot(3,2,6),imshow(imagen),title('Imagen Original')
 
 %---------PUNTO 4 Sal y Pimienta------------------------------
 imagenINE=imread('ParteDelanteraINE.jpg');
