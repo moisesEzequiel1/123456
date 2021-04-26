@@ -36,10 +36,10 @@ imagenTRGray=rgb2gray(imagenTR);
 imagenruidoSalyPim = double(imnoise(imagenTRGray,'salt & pepper',0.15))/255;
 %---------PUNTO 5 Sal y Pimienta------------------------------
 %Suavizado por Media
-mascaraMedia2=fspecial('average',[4,4]);
+mascaraMedia2=fspecial('average',[5,5]);
     imagenSalyPimMedia=conv2(imagenruidoSalyPim,mascaraMedia2,'same'); %Same quita bordes negros
 %Suavizado por Mascara Gaussiana
-mascaraGussiana2=fspecial('gaussian',[13,13],2);
+mascaraGussiana2=fspecial('gaussian',[13, 13],2);
     imagenSalyPimGaus=conv2(imagenruidoSalyPim,mascaraGussiana2,'same');
 %Filtro de mediana       
     imagenSalyPimMediana=ordfilt2(imagenruidoSalyPim,12,ones(5));
@@ -51,5 +51,20 @@ mascaraGussiana2=fspecial('gaussian',[13,13],2);
     subplot(3,2,4),imshow(imagenSalyPimMediana),title('Imagen Filtrada: Filtro de Mediana')
     subplot(3,2,5),imshow(imagenSalyPimMaximo),title('Imagen Filtrada: Filtro de minimos')
     subplot(3,2,6),imshow(imagenTRGray),title('Imagen Original')
+
+% % % % %  Ruido periodico
+imagenRP=imread('filter_fftdenoise_before.jpg');
+imagenRPn=double(imagenRP)/255;
+figure(101),imshow(imagenRPn);
+ventana=[
+    0	0	0	0	0	1;
+    0	0	0	0	1	0;
+    0   0	0	1	0	0;
+    0	0	1	0	0	0;
+    0	1	0	0	0	0;
+    1	0	0	0	0	0
+    ]/6
+imagenRPmedia=conv2(imagenRPn,ventana,'same');
+figure(102),imshow(imagenRPmedia)
 
 
