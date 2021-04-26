@@ -1,7 +1,6 @@
 clc; clear all; close all;
 %---------PUNTO 1------------------------------------------
 imagen=imread('imagendeprueba.bmp');
-% imagenGray=rgb2gray(imagen);
 imagenruidoGaus = double(imnoise(imagen,'gaussian',0,0.02))/255;
 %---------PUNTO 2 Ruido Gaussiano---------------------------
 %Suavizado por Media
@@ -46,7 +45,6 @@ mascaraGussiana2=fspecial('gaussian',[13,13],2);
     imagenSalyPimMediana=ordfilt2(imagenruidoSalyPim,12,ones(5));
 %Filtro de minimo 
     imagenSalyPimMaximo=ordfilt2(imagenruidoSalyPim,1,ones(5));
-
     figure(2), subplot(3,2,1),imshow(imagenruidoSalyPim),title('Imagen Contaminada: Sal y Pimienta')
     subplot(3,2,2),imshow(imagenSalyPimMedia),title('Imagen Filtrada: mascara media')
     subplot(3,2,3),imshow(imagenSalyPimGaus),title('Imagen Filtrada: mascara Gaussiana')
