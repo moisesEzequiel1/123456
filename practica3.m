@@ -35,7 +35,6 @@ ventana=[1 1 1;1 1 1;1 1 1];
 imagenINE=imread('ParteDelanteraINE.jpg');
 imagenINEGray=rgb2gray(imagenINE);
 imagenruidoSalyPim = double(imnoise(imagenINEGray,'salt & pepper',0.15))/255;
-
 %---------PUNTO 5 Sal y Pimienta------------------------------
 %Suavizado por Media
 mascaraMedia2=fspecial('average',[4,4]);
@@ -44,17 +43,15 @@ mascaraMedia2=fspecial('average',[4,4]);
 mascaraGussiana2=fspecial('gaussian',[13,13],2);
     imagenSalyPimGaus=conv2(imagenruidoSalyPim,mascaraGussiana2,'same');
 %Filtro de mediana       
-ventana2=ones(5);      
-    imagenSalyPimMediana=ordfilt2(imagenruidoSalyPim,13,ventana2);
+    imagenSalyPimMediana=ordfilt2(imagenruidoSalyPim,12,ones(5));
 %Filtro de minimo 
-ventana3=[0 1 0;1 1 1;0 1 0];
-    imagenSalyPimMaximo=ordfilt2(imagenruidoSalyPim,1,ventana3);
+    imagenSalyPimMaximo=ordfilt2(imagenruidoSalyPim,1,ones(5));
 
-figure(2), subplot(3,2,1),imshow(imagenruidoSalyPim),title('Imagen Contaminada: Sal y Pimienta')
-subplot(3,2,2),imshow(imagenSalyPimMedia),title('Imagen con suavizado mascara media')
-subplot(3,2,3),imshow(imagenSalyPimGaus),title('Imagen con suaviazado: mascara Gaussiana')
-subplot(3,2,4),imshow(imagenSalyPimMediana),title('Imagen con filtrado: Filtro de Mediana')
-subplot(3,2,5),imshow(imagenSalyPimMaximo),title('Imagen con filtrado: Filtro de minimos')
-subplot(3,2,6),imshow(imagenINEGray),title('Imagen Original')
+    figure(2), subplot(3,2,1),imshow(imagenruidoSalyPim),title('Imagen Contaminada: Sal y Pimienta')
+    subplot(3,2,2),imshow(imagenSalyPimMedia),title('Imagen Filtrada: mascara media')
+    subplot(3,2,3),imshow(imagenSalyPimGaus),title('Imagen Filtrada: mascara Gaussiana')
+    subplot(3,2,4),imshow(imagenSalyPimMediana),title('Imagen Filtrada: Filtro de Mediana')
+    subplot(3,2,5),imshow(imagenSalyPimMaximo),title('Imagen Filtrada: Filtro de minimos')
+    subplot(3,2,6),imshow(imagenINEGray),title('Imagen Original')
 
 
