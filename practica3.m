@@ -15,9 +15,9 @@ mascaraGussiana=fspecial('gaussian',[13,13],2);
     imagen2(:,:,3)=conv2(imagenruidoGaus(:,:,3),mascaraGussiana,'same'); %Same quita bordes negros
 %Filtro de mediana      
 ventana=[1 1 1;1 1 1;1 1 1];       
-    imagen3(:,:,1)=ordfilt2(imagenruidoGaus(:,:,1),4,ventana);
-    imagen3(:,:,2)=ordfilt2(imagenruidoGaus(:,:,2),4,ventana);
-    imagen3(:,:,3)=ordfilt2(imagenruidoGaus(:,:,3),4,ventana);
+    imagen3(:,:,1)=ordfilt2(imagenruidoGaus(:,:,1),5,ventana);
+    imagen3(:,:,2)=ordfilt2(imagenruidoGaus(:,:,2),5,ventana);
+    imagen3(:,:,3)=ordfilt2(imagenruidoGaus(:,:,3),5,ventana);
 %Filtro de minimo       
     imagen4(:,:,1)=ordfilt2(imagenruidoGaus(:,:,1),1,ventana);
     imagen4(:,:,2)=ordfilt2(imagenruidoGaus(:,:,2),1,ventana);
@@ -42,7 +42,7 @@ mascaraMedia2=fspecial('average',[5,5]);
 mascaraGussiana2=fspecial('gaussian',[13, 13],2);
     imagenSalyPimGaus=conv2(imagenruidoSalyPim,mascaraGussiana2,'same');
 %Filtro de mediana       
-    imagenSalyPimMediana=ordfilt2(imagenruidoSalyPim,12,ones(5));
+    imagenSalyPimMediana=ordfilt2(imagenruidoSalyPim,13,ones(5));
 %Filtro de minimo 
     imagenSalyPimMaximo=ordfilt2(imagenruidoSalyPim,1,ones(5));
     figure(2), subplot(3,2,1),imshow(imagenruidoSalyPim),title('Imagen Contaminada: Sal y Pimienta')
@@ -55,16 +55,15 @@ mascaraGussiana2=fspecial('gaussian',[13, 13],2);
 % % % % %  Ruido periodico
 imagenRP=imread('filter_fftdenoise_before.jpg');
 imagenRPn=double(imagenRP)/255;
-figure(101),imshow(imagenRPn);
+figure(101),imshow(imagenRPn);,title('Imagen Original');
 ventana=[
-    0	0	0	0	0	1;
-    0	0	0	0	1	0;
-    0   0	0	1	0	0;
-    0	0	1	0	0	0;
-    0	1	0	0	0	0;
-    1	0	0	0	0	0
-    ]/6
+    0	0	0	0	1;
+    0   0	0	1	0;
+    0	0	1	0	0;
+    0	1	0	0	0;
+    1	0	0	0	0
+    ]/5
 imagenRPmedia=conv2(imagenRPn,ventana,'same');
-figure(102),imshow(imagenRPmedia)
+figure(102),imshow(imagenRPmedia);title('ImagenFiltrada: Mascara de la media');
 
 
