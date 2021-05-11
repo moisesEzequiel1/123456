@@ -1,7 +1,7 @@
 clc; clear all;close all; 
 %---------PUNTO 10----------------------------------------------------
 imagen=imread('placas4.jpeg');
-subimagen=imagen(302:590,:,:);
+subimagen=imag  en(302:590,:,:);
 placasGray=double(rgb2gray(subimagen))/255;
 figure(1),imshow(placasGray),title('Imagen Original')
 %---------PUNTO 11----------------------------------------------------
