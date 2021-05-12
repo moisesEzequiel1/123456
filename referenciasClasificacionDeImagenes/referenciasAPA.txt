@@ -1,3 +1,0 @@
-Lu, D., & Weng, Q. (2007). A survey of image classification methods and techniques for improving classification performance. International journal of Remote sensing, 28(5), 823-870.
-
-Wang, S. Z., & Lee, H. J. (2007). A cascade framework for a real-time statistical plate recognition system. IEEE Transactions on Information Forensics and Security, 2(2), 267-282.
